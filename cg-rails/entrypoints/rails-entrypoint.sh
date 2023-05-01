@@ -1,9 +1,9 @@
 #!/bin/sh
 
-sudo set -e
+set -e
 
 if [ -f tmp/pids/server.pid ]; then
-  sudo rm tmp/pids/server.pid
+  rm tmp/pids/server.pid
 fi
 
 # bundle exec rails s -p 3000

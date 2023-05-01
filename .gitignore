@@ -37,3 +37,5 @@ cg-rail/public/assets
 
 # Ignore master key for decrypting credentials and more.
 cg-rail/config/master.key
+
+.obsidian/*

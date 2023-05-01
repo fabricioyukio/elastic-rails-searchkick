@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_203902) do
   enable_extension "plpgsql"
 
   create_table "prompts", force: :cascade do |t|
-    t.integer "original_index", default: 0, null: false
+    t.bigint "original_index", default: 0, null: false
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

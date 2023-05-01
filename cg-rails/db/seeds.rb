@@ -26,14 +26,11 @@ begin
       data << { original_index: this_row['index'], content: this_row['content']}
     end
 
-    raise StandardError.new "No new records to insert" if data.empty? # If we've already got this file, we're done
 
+    raise StandardError.new "No new records to insert" if data.empty? # If we've already got this file, we're done
     puts "Importing #{data.length} prompts..."
     Prompt.insert_all(data)
     puts "Successfully inserted #{data.length} prompts"
-    # FileUtils.rm_rf('dir/to/remove') deletes the directory
-    File.delete(csv_path) # Delete just the csv seed file
-    puts "Successfully deleted #{csv_path}"
   rescue Exception => e
     puts "Failed to insert prompts: #{e}"
   end
@@ -51,5 +48,11 @@ rescue CSV::Row::MissingRowHeaderError => e
 rescue StandardError => e
   puts "Failed to process file: #{e}"
 else
-  puts "Successfully processed file"
+  puts "Successfully processed"
+ensure
+  if File.exist?(csv_path)
+    File.delete(csv_path)
+    # FileUtils.rm_rf('dir/t o/remove') deletes the directory
+    puts "Also, deleted #{csv_path}"
+  end
 end

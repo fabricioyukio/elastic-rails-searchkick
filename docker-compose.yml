@@ -1,0 +1,111 @@
+version: "3.9"
+
+services:
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: nginx.dockerfile
+    volumes:
+      - ./nginx/conf/reverse-proxy.conf:/etc/nginx/conf.d/reverse-proxy.conf:ro
+    depends_on:
+      - app
+      - db
+    links:
+      - app
+    ports:
+      - 80:80
+    env_file:
+      - .env
+
+  app:
+    container_name: app
+    build:
+      context: ./cg-rails
+      dockerfile: rails.dockerfile
+    volumes:
+      - ./cg-rails:/usr/src/app
+    depends_on:
+      - db
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    entrypoint: ./entrypoints/rails-entrypoint.sh
+
+  db:
+    container_name: db
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pg/data/db:/var/lib/postgresql/data
+    env_file: .env
+
+  redis:
+    image: redis:7.0
+    command: redis-server
+    ports:
+      - 6379:6379
+
+  sidekiq:
+    container_name: sidekiq
+    build:
+      context: ./cg-rails
+      dockerfile: rails.dockerfile
+    depends_on:
+      - redis
+      - app
+      - db
+    volumes:
+      - ./cg-rails:/usr/src/app
+    env_file:
+      - .env
+    entrypoint: ./entrypoints/sidekiq-entrypoint.sh
+
+  elastic:
+    container_name: elastic
+    build:
+      context: ./elastic
+      dockerfile: es.dockerfile
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=true
+    volumes:
+      - ./elastic/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    env_file:
+      - .env
+
+  kibana:
+    container_name: kibana
+    build:
+      context: ./kibana
+      dockerfile: kib.dockerfile
+    depends_on:
+      - elastic
+    links:
+      - elastic
+    ports:
+      - "5601:5601"
+    environment:
+      elasticsearch: ${URL_ELASTIC}
+      ELASTICSEARCH_USERNAME: ${KIBANA_USERNAME}
+      ELASTICSEARCH_PASSWORD: ${KIBANA_PASSWORD}
+    volumes:
+      - ./kibana/config/kibana.yml:/opt/kibana/config/kibana.yml
+    env_file:
+      - .env
+
+
+volumes:
+  postgres:
+  redis:

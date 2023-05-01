@@ -2,15 +2,6 @@
 .DS_Store
 **/.DS_Store
 
-!cg-rails/tmp/.keep
-cg-rails/tmp/*
-
-!cg-rails/vendor/.keep
-cg-rails/vendor/*
-
-!cg-rails/storage/.keep
-cg-rails/storage/*
-
 !pg/data/.keep
 pg/data/*
 
@@ -27,3 +18,22 @@ yarn-debug.log*
 .yarn-integrity
 yarn-error.log*
 yarn.lock
+
+
+# RAILS APP RULES
+!cg-rails/storage/.keep
+cg-rails/storage/*
+
+!cg-rails/tmp/.keep
+cg-rails/tmp/*
+
+!cg-rails/vendor/.keep
+cg-rails/vendor/*
+
+!cg-rails/log/.keep
+cg-rails/log/*
+
+cg-rail/public/assets
+
+# Ignore master key for decrypting credentials and more.
+cg-rail/config/master.key

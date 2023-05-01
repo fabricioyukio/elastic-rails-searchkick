@@ -1,3 +1,8 @@
+. . .
+yarn-error.log
+coverage/
+.env
+.keep
 .git
 .env
 .DS_Store
@@ -14,12 +19,4 @@ config/deploy
 public/packs
 public/packs-test
 node_modules
-yarn-error.log
-coverage/
-.keep
 **/.keep
-
-.bundleignore
-.bundle
-.byebug_history
-.rspec

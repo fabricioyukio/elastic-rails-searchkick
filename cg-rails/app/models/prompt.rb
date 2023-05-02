@@ -14,7 +14,7 @@ class Prompt < ApplicationRecord
 
   before_validation :original_index, :format_original_index
 
-  searchkick callbacks: false
+  searchkick callbacks: :async
 
   default_scope { order(created_at: :desc) }
 
@@ -22,10 +22,10 @@ class Prompt < ApplicationRecord
     self.original_index = self.original_index.to_i unless self.original_index.is_a? Integer
   end
 
-  def search_data
-    {
-      content: content
-    }
-  end
+  # def search_data
+  #   {
+  #     content: content
+  #   }
+  # end
 
 end

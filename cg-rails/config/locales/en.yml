@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+  search:
+    label: "Search in prompts db"
+    placeholder: "Type something, it'll be fun!"
+  forms:
+    prompts:
+      fields:
+        original_index:
+          label: "Original Index"
+          labels: "Original Indexes"
+        content:
+          label: "Content"
+          labels: "Contents"
+

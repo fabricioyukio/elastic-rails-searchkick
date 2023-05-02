@@ -3,7 +3,7 @@
 <h1>Prompts</h1>
 
 <div id="prompts">
-  <% render 'prompts/partials/list' prompts=@prompts %>
+  <%= render 'prompts/partials/list', prompts: @prompts %>
 </div>
 
 <%= link_to "New prompt", new_prompt_path %>

@@ -1,8 +1,0 @@
-<% @prompts.each do |prompt|%>
-  <div class="prompt">
-    <h2>Added <%= prompt.created_at.strftime("%Y-%m-%d @ %H:%i:%s") %></h2>
-    <p><%= prompt.content %></p>
-    <p><%= link_to "Edit", edit_prompt_path(prompt) %></p>
-    <p><%= link_to "Delete", prompt, method: :delete, data: { confirm: "Are you sure?" } %></p>
-  </div>
-<%end%>

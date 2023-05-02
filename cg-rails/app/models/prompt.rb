@@ -9,13 +9,18 @@
 #  updated_at    :datetime         not null
 #
 class Prompt < ApplicationRecord
-  paginates_per Rails.env.default_page_size || 20
-  validates :original_index, presence: true, integer: true
+  validates :original_index, presence: true, numericality: { only_integer: true }
   validates :content, presence: true, length: { minimum: 3, maximum: 512 }
+
+  before_validation :original_index, :format_original_index
 
   searchkick callbacks: false
 
   default_scope { order(created_at: :desc) }
+
+  def format_original_index
+    self.original_index = self.original_index.to_i unless self.original_index.is_a? Integer
+  end
 
   def search_data
     {

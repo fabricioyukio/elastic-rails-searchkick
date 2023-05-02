@@ -21,11 +21,14 @@ class PromptsController < ApplicationController
 
   # POST /prompts or /prompts.json
   def create
-    @prompt = Prompt.new(prompt_params)
+    @prompt = Prompt.new(
+                        original_index: params[:prompt][:original_index].to_i,
+                        content: params[:prompt][:content]
+                      )
 
     respond_to do |format|
       if @prompt.save
-        format.html { redirect_to prompt_url(@prompt), notice: "Prompt was successfully created." }
+        format.html { redirect_to root_url, notice: "Prompt was successfully created." }
         format.json { render :show, status: :created, location: @prompt }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,8 +40,9 @@ class PromptsController < ApplicationController
   # PATCH/PUT /prompts/1 or /prompts/1.json
   def update
     respond_to do |format|
-      if @prompt.update(prompt_params)
-        format.html { redirect_to prompt_url(@prompt), notice: "Prompt was successfully updated." }
+      updated = params[:prompt]
+      if @prompt.update(original_index: updated[:original_index].to_i,content:  updated[:content])
+        format.html { redirect_to root_url, notice: "Prompt was successfully updated." }
         format.json { render :show, status: :ok, location: @prompt }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +56,7 @@ class PromptsController < ApplicationController
     @prompt.destroy
 
     respond_to do |format|
-      format.html { redirect_to prompts_url, notice: "Prompt was successfully destroyed." }
+      format.html { redirect_to root_url, notice: "Prompt was successfully destroyed." }
       format.json { head :no_content }
     end
   end

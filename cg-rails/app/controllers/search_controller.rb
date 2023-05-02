@@ -1,6 +1,9 @@
 class SearchController < ApplicationController
   def search
-    @search = Search.new(params[:search])
-    @results = @search.results
+    @prompts = Prompt.search(params[:search])
+
+    render turbo_stream:
+      turbo_stream.update('prompts', partial: 'prompts/partials/list', locals: { prompts: @prompts })
+
   end
 end

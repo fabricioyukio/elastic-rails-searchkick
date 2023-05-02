@@ -12,6 +12,13 @@
   <% end %>
 
   <div>
+    <%= form.label t('forms.prompts.fields.original_index.label')  %>
+    <%= form.number_field :original_index, in: 1..9999, step: 1 %>
+  <div>
+  <div>
+    <%= form.label t('forms.prompts.fields.content.label') %>
+    <%= form.text_area :content %>
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

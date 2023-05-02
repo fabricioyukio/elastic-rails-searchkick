@@ -1,11 +1,13 @@
 # Dockerfile.rails
 FROM ruby:3.2.2
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
 WORKDIR /usr/src/app
 COPY Gemfile /usr/src/app/Gemfile
 COPY Gemfile.lock /usr/src/app/Gemfile.lock
 RUN gem update --system 3.4.12
+# RUN bundle exec css:install:bootstrap
+# RUN bundle exec javascript:install:esbuild
 RUN bundle check || bundle install
 RUN bundle update
 

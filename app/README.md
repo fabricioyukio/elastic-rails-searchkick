@@ -141,6 +141,6 @@ ___
 rails c
 ```
 it will open IRB, 16 character is enough for local development. Anyways, you should use a size of 32 or 64, for staging and production environments.
-```irb
-irb> SecureRandom.urlsafe_base64(16)
+```ruby
+SecureRandom.urlsafe_base64(16)
 ```

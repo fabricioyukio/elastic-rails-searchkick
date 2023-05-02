@@ -10,8 +10,12 @@ class SearchController < ApplicationController
     puts "\n\n\n"
     @prompts = Prompt.search(params[:search],
                             fields: [:content],
-                            operator: "or")
-    @prompts = Prompt.search('*') if params[:search].blank?
+                            operator: "or",
+                            page: page,
+                            per_page: size)
+    @prompts = Prompt.search('*',
+                            page: page,
+                            per_page: size) if params[:search].blank?
 
     render turbo_stream: turbo_stream.update('prompts',
             partial: 'prompts/partials/list',

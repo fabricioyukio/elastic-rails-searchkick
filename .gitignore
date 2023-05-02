@@ -19,24 +19,24 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
-cg-rails/config/master.key
+app/config/master.key
 
 # RAILS APP RULES
-!cg-rails/storage/.keep
-cg-rails/storage/*
+!app/storage/.keep
+app/storage/*
 
-!cg-rails/tmp/.keep
-cg-rails/tmp/*
+!app/tmp/.keep
+app/tmp/*
 
-!cg-rails/vendor/.keep
-cg-rails/vendor/*
+!app/vendor/.keep
+app/vendor/*
 
-!cg-rails/log/.keep
-cg-rails/log/*
+!app/log/.keep
+app/log/*
 
-cg-rail/public/assets
+app/public/assets
 
 # Ignore master key for decrypting credentials and more.
-cg-rail/config/master.key
+# app/config/master.key
 
 .obsidian/*

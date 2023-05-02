@@ -35,6 +35,7 @@ app/vendor/*
 app/log/*
 
 app/public/assets
+app/.obsidian/*
 
 # Ignore master key for decrypting credentials and more.
 # app/config/master.key

@@ -22,10 +22,10 @@ services:
   app:
     container_name: app
     build:
-      context: ./cg-rails
+      context: ./app
       dockerfile: rails.dockerfile
     volumes:
-      - ./cg-rails:/usr/src/app
+      - ./app:/usr/src/app
     depends_on:
       - db
     ports:
@@ -46,27 +46,27 @@ services:
       - ./pg/data/db:/var/lib/postgresql/data
     env_file: .env
 
-  redis:
-    container_name: redis
-    image: redis:7.0
-    command: redis-server
-    ports:
-      - 6379:6379
+  # redis:
+  #   container_name: redis
+  #   image: redis:7.0
+  #   command: redis-server
+  #   ports:
+  #     - 6379:6379
 
-  sidekiq:
-    container_name: sidekiq
-    build:
-      context: ./cg-rails
-      dockerfile: rails.dockerfile
-    depends_on:
-      - redis
-      - app
-      - db
-    volumes:
-      - ./cg-rails:/usr/src/app
-    env_file:
-      - .env
-    entrypoint: ./entrypoints/sidekiq-entrypoint.sh
+  # sidekiq:
+  #   container_name: sidekiq
+  #   build:
+  #     context: ./cg-rails
+  #     dockerfile: rails.dockerfile
+  #   depends_on:
+  #     - redis
+  #     - app
+  #     - db
+  #   volumes:
+  #     - ./cg-rails:/usr/src/app
+  #   env_file:
+  #     - .env
+  #   entrypoint: ./entrypoints/sidekiq-entrypoint.sh
 
   elastic:
     container_name: elastic
@@ -75,9 +75,8 @@ services:
       dockerfile: es.dockerfile
     environment:
       - discovery.type=single-node
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
-      - xpack.security.enabled=false
-      - xpack.security.enrollment.enabled=true
+      # - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      # - xpack.security.enabled=false
     volumes:
       - ./elastic/data:/usr/share/elasticsearch/data
       - ./elastic/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml

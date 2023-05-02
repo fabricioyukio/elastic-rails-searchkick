@@ -1,0 +1,6 @@
+<% prompts.each do |prompt| %>
+  <div class="prompt" id="prompt-<%=prompt.id%>">
+    <h3>Prompted in <%=prompt.created_at.strftime("%H-%m-%d@%H:%M:%S")%></h3>
+    <p><%=prompt.content%></p>
+  </div>
+<% end %>

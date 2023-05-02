@@ -19,6 +19,7 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 
+cg-rails/config/master.key
 
 # RAILS APP RULES
 !cg-rails/storage/.keep

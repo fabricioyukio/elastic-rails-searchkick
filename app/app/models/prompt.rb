@@ -9,16 +9,21 @@
 #  updated_at    :datetime         not null
 #
 class Prompt < ApplicationRecord
+  searchkick
+
+  after_save :reindex
+  after_find :reindex
+  after_initialize :reindex
+  after_commit :reindex, if: -> (model) { model.previous_changes.key?("content") }
+
   validates :original_index, presence: true, numericality: { only_integer: true }
   validates :content, presence: true, length: { minimum: 3, maximum: 512 }
+
+  default_scope { order(created_at: :desc) }
 
   paginates_per ENV['DEFAULT_PAGE_SIZE'].to_i
 
   before_validation :original_index, :format_original_index
-
-  searchkick
-
-  default_scope { order(created_at: :desc) }
 
   def format_original_index
     self.original_index = self.original_index.to_i unless self.original_index.is_a? Integer

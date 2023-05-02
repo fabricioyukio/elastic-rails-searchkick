@@ -59,6 +59,8 @@ cp .env-example .env
 ```
 You must check the file and place some required data.
 
+Otherwise, you also need to add some Hash data to *./cg-rails/config/master.key* file
+
 Start building, enter the command:
 ```Bash
 docker-compose build

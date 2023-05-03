@@ -12,6 +12,7 @@ services:
     depends_on:
       - app
       - db
+      - elastic
     links:
       - app
     ports:

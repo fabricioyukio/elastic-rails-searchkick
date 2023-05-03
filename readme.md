@@ -3,16 +3,31 @@
 This project seeks to be a proof of concept and, maybe, a boilerplate for a Rails+Elasticsearch App Stack.
 The idea is that it will learn better responses for searches into some *prompts* used to train a *Stable-Diffusion* App. The *raw data* may be acquired in the following URI: https://huggingface.co/datasets/Gustavosta/Stable-Diffusion-Prompts/blob/main/README.md
 
+Those files contain prompts (what people asked for Stable Diffusion) for training and testing.
+
 <br>
+
+## Initial considerations
+As I, to this moment, have no idea of what would be a "nice real case scenario" it's just indexing the *search* and the *prompt*.
+
+On future, I think I could get into some tagging, or most "valuable" words (creating that in a prefix tree).
+
+### As of this moment we do have...
+
+#### 2023-05-03
+- **Rails APP** that indexes the *prompts* from a DB into ES.
+- **Elastic search** indexing the *prompts*
+- **Postgres DB** storing *prompts*
+- **NGINX**, right now, only providing routing use URL's to access relevant applications
 
 ## Prepare your machine
 
 ### 0 - Before you begin...
 For smoothly running this project you must edit your _hosts_ file adding the following lines...
-```
-127.0.0.1 app.local.test
-127.0.0.1 elasticsearch.local.test
-127.0.0.1 kibana.local.test
+```C
+127.0.0.1 app.local.test //Rails App
+127.0.0.1 elasticsearch.local.test //Elasticsearch, also running at http://elastic:9200
+// 127.0.0.1 kibana.local.test //Kibana
 ```
 As every _OS_ has its own specific locations for such file, it's up to you to find out where that file locates in your machine.
 

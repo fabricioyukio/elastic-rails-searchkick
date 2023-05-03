@@ -4,9 +4,11 @@ class SearchController < ApplicationController
     size = (ENV['DEFAULT_PAGE_SIZE'] || 25).to_i
     offset = (page - 1) * size
 
+    # OR operator: any of the search terms
+    # AND operator: all of the search terms
     @prompts = Prompt.search(params[:search],
                             fields: [:content],
-                            operator: "or",
+                            operator: "and",
                             page: page,
                             per_page: size)
     @prompts = Prompt.search('*',

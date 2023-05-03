@@ -123,21 +123,24 @@ rails db:migrate:reset
 Get the PARQUET files from: https://huggingface.co/datasets/Gustavosta/Stable-Diffusion-Prompts/blob/main/README.md
 
 - Download one of the files (train.parquet or eval.parquet).
-- Put the desired file into ```./app/storage/batch```
-- Convert that file to ".csv"
-	- for making things easier I've put a python script to make that conversion:
-	  ```bash
-	  pip install -r requirements.txt
-	  python parquet-to-csv.py $from_name $to_name
-	  ```
-	  **$from_name**: name of the parquet file, without extension (train.parquet: train)
-	  **$to_name**: name of the csv file, without extension (prompts.csv: prompts). Choose from: prompts, ...(maybe more to come)
-	  - Example of use:
-	    ```bash
-	    python parquet-to-csv.py eval prompts
-	    # this will transform eval.parquet into prompts.csv
-	    ```
-- Have in mind that once the files are used they will be **deleted**. So if one must *seed* it again, one will have to put a new *parquet* file in the same directory.
+- Put the desired file into ```./app/storage/batch```, converted to CSV.
+
+#### Convert file
+For making things easier I've put a python script to make that conversion (converts a *parquet* file to "*.csv*"):
+```bash
+pip install -r requirements.txt
+python parquet-to-csv.py $from_name $to_name
+```
+- **$from_name**: name of the parquet file, without extension (train.parquet: train)
+- **$to_name**: name of the csv file, without extension (prompts.csv: prompts). Choose from: prompts, ...(maybe more to come)
+
+Example of use:
+```bash
+python parquet-to-csv.py eval prompts
+# this will transform eval.parquet into prompts.csv
+```
+
+Have in mind that once the files are used they will be **deleted**. So if one must *seed* it again, one will have to put a new *parquet* file in the same directory.
 
 ___
 </br>

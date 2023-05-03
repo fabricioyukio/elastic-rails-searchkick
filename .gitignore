@@ -22,7 +22,8 @@ yarn.lock
 app/config/master.key
 
 # RAILS APP RULES
-!app/storage/.keep
+!app/storage/batch/parquet-to-csv.py
+!app/storage/batch/requirements.txt
 app/storage/*
 
 !app/tmp/.keep

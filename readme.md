@@ -123,7 +123,7 @@ rails db:migrate:reset
 Get the PARQUET files from: https://huggingface.co/datasets/Gustavosta/Stable-Diffusion-Prompts/blob/main/README.md
 
 - Download one of the files (train.parquet or eval.parquet).
-- Put the desired file into ```./cg-rails/storage/parquet```
+- Put the desired file into ```./app/storage/batch```
 - Convert that file to ".csv"
 	- for making things easier I've put a python script to make that conversion:
 	  ```bash
@@ -143,8 +143,11 @@ ___
 </br>
 
 ## Acessing the App
-Just accedd the following URL:
+Just accedd the following URLs:
+### Rails App
 http://app.local.test
+### Elastic search instance
+http://elastic.local.test
 ___
 </br>
 

@@ -5,7 +5,7 @@ require 'csv'
 # require Prompt
 begin
   puts "Reading prompts.csv..."
-  csv_path = "#{Rails.root}/storage/parquet/prompts.csv"
+  csv_path = "#{Rails.root}/storage/batch/prompts.csv"
   csv_text = File.read(csv_path)  # Read the file
   csv_parsed = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")  # Parse the file
   data = []

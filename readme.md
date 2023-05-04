@@ -14,6 +14,9 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 
 ### As of this moment we do have...
 
+#### 2023-05-03 - night
+- Added interface improvements with (Dart)**Sass** and CDN Bootstrap
+
 #### 2023-05-03
 - **Rails APP** that indexes the *prompts* from a DB into ES.
 - **Elastic search** indexing the *prompts*
@@ -26,8 +29,9 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 For smoothly running this project you must edit your _hosts_ file adding the following lines...
 ```C
 127.0.0.1 app.local.test //Rails App
-127.0.0.1 elasticsearch.local.test //Elasticsearch, also running at http://elastic:9200
-// 127.0.0.1 kibana.local.test //Kibana
+127.0.0.1 elasticsearch.local.test 
+// 127.0.0.1 kibana.local.test //Kibana to be added soon
+//Elasticsearch, also running at http://elastic:9200
 ```
 As every _OS_ has its own specific locations for such file, it's up to you to find out where that file locates in your machine.
 

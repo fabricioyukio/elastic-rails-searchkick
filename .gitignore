@@ -34,6 +34,7 @@ app/vendor/*
 
 !app/log/.keep
 app/log/*
+app/node_modules/*
 
 app/public/assets
 **/.obsidian/*

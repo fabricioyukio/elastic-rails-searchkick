@@ -28,7 +28,7 @@ class PromptsController < ApplicationController
 
     respond_to do |format|
       if @prompt.save
-        format.html { redirect_to root_url, notice: "Prompt was successfully created." }
+        format.html { redirect_to root_url, flash: { success: "Prompt was successfully created." } }
         format.json { render :show, status: :created, location: @prompt }
       else
         format.html { render :new, status: :unprocessable_entity }

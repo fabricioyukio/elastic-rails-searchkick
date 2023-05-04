@@ -76,7 +76,4 @@ group :test do
   gem "webdrivers"
 end
 
-# Searchkick allows us to use Elasticsearch
-gem 'searchkick'
-# 7.17.8 is the latest version that works with Rails 7.0.4
-gem 'elasticsearch', '~> 7.17.7'
+gem "dartsass-rails", "~> 0.4.1"

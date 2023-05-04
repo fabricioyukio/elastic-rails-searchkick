@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
 
-  resources :prompts
+  resources :prompts, :only => [:show, :new, :create, :edit, :update, :destroy]
 end

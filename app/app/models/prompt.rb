@@ -12,7 +12,6 @@ class Prompt < ApplicationRecord
   searchkick
 
   after_save :reindex
-  after_find :reindex
   after_initialize :reindex
   after_commit :reindex, if: -> (model) { model.previous_changes.key?("content") }
 

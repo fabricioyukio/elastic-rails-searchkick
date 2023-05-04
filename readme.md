@@ -29,7 +29,7 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 For smoothly running this project you must edit your _hosts_ file adding the following lines...
 ```C
 127.0.0.1 app.local.test //Rails App
-127.0.0.1 elasticsearch.local.test 
+127.0.0.1 elasticsearch.local.test
 // 127.0.0.1 kibana.local.test //Kibana to be added soon
 //Elasticsearch, also running at http://elastic:9200
 ```
@@ -96,6 +96,20 @@ And, when you want to stop the stack:
 ```Bash
 docker-compose down
 ```
+
+#### Precompile assets
+In order to properly use Javascripts and CSS, you will need to precompile the Assets.
+After the stack rises, just access the container's terminal, navigate to rails App folder and run the following commands:
+
+```bash
+docker exec $APP bash -c
+# $APP is the docker container for rails APP (app, by this project default)
+# once the container's terminal is up, just do
+bundle exec rails dartsass:build
+bundle exec rails assets:precompile
+# this will transform SCSS to CSS for the APP to use.
+```
+
 
 ### 6 - Setting data
 

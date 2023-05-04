@@ -1,8 +1,12 @@
 <%= form_with(model: prompt) do |form| %>
   <% if prompt.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(prompt.errors.count, "error") %> prohibited this prompt from being saved:</h2>
-
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">
+        Ooops!
+      </h4>
+      <p><%= pluralize(prompt.errors.count, "error") %>
+        prohibited this prompt from being saved.</p>
+      <hr />
       <ul>
         <% prompt.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,14 +15,15 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label t('forms.prompts.fields.original_index.label')  %>
-    <%= form.number_field :original_index, in: 1..9999, step: 1 %>
-  <div>
-  <div>
-    <%= form.label t('forms.prompts.fields.content.label') %>
-    <%= form.text_area :content %>
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :original_index, t('forms.prompts.fields.original_index.label') %>
+    <%= form.number_field :original_index, in: 0..9999999, step: 1, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :content, t('forms.prompts.fields.content.label') %>
+    <%= form.text_area :content, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.submit class:"btn btn-primary" %>
   </div>
 <% end %>

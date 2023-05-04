@@ -1,0 +1,46 @@
+// Sassy
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans|Montserrat&display=swap');
+
+body {
+  background-color: #f2f2f2;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  header.main {
+    margin: 0 0 0 0;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    color: #444;
+  }
+  .flash-notices{
+    padding: 2rem;
+    margin: 2rem 0 2rem 0;
+    .alert{
+      &.alert-notice{
+        color: #004085;
+        background-color: #cce5ff;
+        border-color: #b8daff;
+        padding: 10px;
+      }
+    }
+
+  }
+  section.main{
+    padding: 2rem;
+    margin: 0 0 0 0;
+    background-color: #fff;
+    form {
+      .form-group{
+        margin-top: 1rem;
+      }
+    }
+    .prompts{
+      margin: 1rem 0 1rem 0;
+      .prompt{
+        margin: .5rem 0 .5rem 0;
+      }
+    }
+  }
+  footer.main {
+    margin: 2rem 0 0 0;
+    padding: 2rem;
+  }
+}

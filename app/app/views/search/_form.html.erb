@@ -1,5 +1,17 @@
-<%= form_with url: search_path, method: :post, remote: true do |form| %>
-  <%= form.label :search %>
-  <%= form.text_field :search %>
-  <%= form.submit "Search" %>
-<% end %>
+<nav class="navbar navbar-lg navbar-dark bg-info">
+  <%= form_with(
+    url: search_path,
+    method: :get,
+    class: 'd-flex',
+    data: {
+      controler: "prompt",
+      action: search_path,
+      submit_form_target: "form",
+      turbo_frame: :prompts_list
+    })do |form| %>
+    <span class="navbar-brand"><%= form.label :search,
+      t('search.label') %></span>
+    <%= form.text_field :search, class:'form-control form-control-lg mr-2', placeholder: t('search.placeholder') %>
+    <%= form.submit "Search", class:"btn btn-large btn-primary" %>
+  <% end %>
+</nav>

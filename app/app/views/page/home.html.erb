@@ -1,21 +1,9 @@
 <h1>Prompts</h1>
 
 
-<%= form_with(
-  url: search_path,
-  method: :get,
-  data: {
-    controler: "prompt",
-    action: search_path,
-    submit_form_target: "form",
-    turbo_frame: :prompts_list
-  })do |form| %>
-  <%= form.label :search, t('search.label') %>
-  <%= form.text_field :search, placeholder: t('search.placeholder') %>
-  <%= form.submit "Search" %>
-<%end%>
+<%= render "search/form"%>
 
-<div id="prompts">
+<div id="prompts" class="prompts">
     <%= render 'prompts/partials/list', prompts: @prompts %>
 </div>
 

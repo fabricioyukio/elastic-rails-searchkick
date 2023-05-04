@@ -72,4 +72,6 @@ Rails.application.configure do
     config.web_console.whitelisted_ips = ENV['DOCKER_HOST_IP']
   end
   config.web_console.permissions = '192.168.0.0/16'
+  # config.sass.inline_source_maps = true
+
 end

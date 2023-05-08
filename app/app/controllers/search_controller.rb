@@ -4,6 +4,7 @@ class SearchController < ApplicationController
     size = (ENV['DEFAULT_PAGE_SIZE'] || 25).to_i
     offset = (page - 1) * size
 
+    search = params[:search] || '*'
     # OR operator: any of the search terms
     # AND operator: all of the search terms
     @prompts = Prompt.search(params[:search],
@@ -11,11 +12,8 @@ class SearchController < ApplicationController
                             operator: "and",
                             page: page,
                             per_page: size)
-    @prompts = Prompt.search('*',
-                            page: page,
-                            per_page: size) if params[:search].blank?
 
-    PromptIndexerWorker.perform_async(@prompts)
+    MultiplePromptIndexerWorker.perform_async(search)
 
     render turbo_stream: turbo_stream.update('prompts',
             partial: 'prompts/partials/list',

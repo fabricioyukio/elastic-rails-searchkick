@@ -12,7 +12,7 @@ class Prompt < ApplicationRecord
   searchkick
 
   after_save :reindex_async
-  # after_initialize :reindex
+  after_initialize :reindex_async
   after_commit :reindex_async, if: -> (model) { model.previous_changes.key?("content") }
 
   validates :original_index, presence: true, numericality: { only_integer: true }

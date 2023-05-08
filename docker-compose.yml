@@ -11,6 +11,7 @@ services:
       - ./nginx/conf/reverse-proxy.conf:/etc/nginx/conf.d/reverse-proxy.conf:ro
     depends_on:
       - app
+      - redis
       - db
       - elastic
     links:
@@ -27,8 +28,14 @@ services:
       dockerfile: rails.dockerfile
     volumes:
       - ./app:/usr/src/app
+    links:
+      - db
+      - elastic
+      - redis
     depends_on:
       - db
+      - elastic
+      - redis
     ports:
       - '3000:3000'
     env_file:
@@ -64,6 +71,17 @@ services:
       - 9300:9300
     env_file:
       - .env
+
+  redis:
+    container_name: redis
+    image: redis:7.0-alpine
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./redis/data:/data
+      - ./redis/redis.conf:/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+
 
   # kibana:
   #   container_name: kibana

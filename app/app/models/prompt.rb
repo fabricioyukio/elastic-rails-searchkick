@@ -11,9 +11,9 @@
 class Prompt < ApplicationRecord
   searchkick
 
-  after_save :reindex
-  after_initialize :reindex
-  after_commit :reindex, if: -> (model) { model.previous_changes.key?("content") }
+  after_save :reindex_async
+  # after_initialize :reindex
+  after_commit :reindex_async, if: -> (model) { model.previous_changes.key?("content") }
 
   validates :original_index, presence: true, numericality: { only_integer: true }
   validates :content, presence: true, length: { minimum: 3, maximum: 512 }
@@ -26,6 +26,11 @@ class Prompt < ApplicationRecord
 
   def format_original_index
     self.original_index = self.original_index.to_i unless self.original_index.is_a? Integer
+  end
+
+  def reindex_async
+    puts "Reindexing Prompt #{self.original_index}..."
+    PromptIndexerWorker.perform_async(self.id)
   end
 
   # def search_data

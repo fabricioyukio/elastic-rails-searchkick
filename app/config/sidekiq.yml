@@ -1,0 +1,14 @@
+:concurrency: 5
+:verbose: true
+:timeout: 50
+:queues:
+  - [searchkick, 5]
+  - [indexer, 5]
+  - [carrierwave, 5]
+  - [default, 5]
+  - [mailers, 5]
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 20
+:logfile: ./log/sidekiq.log

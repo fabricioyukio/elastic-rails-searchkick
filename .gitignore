@@ -2,11 +2,9 @@
 .DS_Store
 **/.DS_Store
 
-!pg/data/.keep
 pg/data/*
-
 !pg/data/.keep
-pg/data/*
+!pg/data/db/.keep
 
 !redis/data/.keep
 redis/data/*

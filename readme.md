@@ -14,6 +14,11 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 
 ### As of this moment we do have...
 
+#### 2023-05-07
+- Added Foreman
+- Enabled Redis and SideKick
+- Elasticsearch indexing in Background (async)
+
 #### 2023-05-03 - night
 - Added interface improvements with (Dart)**Sass** and CDN Bootstrap
 
@@ -30,6 +35,7 @@ For smoothly running this project you must edit your _hosts_ file adding the fol
 ```C
 127.0.0.1 app.local.test //Rails App
 127.0.0.1 elasticsearch.local.test
+127.0.0.1 queue.local.test
 // 127.0.0.1 kibana.local.test //Kibana to be added soon
 //Elasticsearch, also running at http://elastic:9200
 ```
@@ -167,6 +173,8 @@ ___
 Just accedd the following URLs:
 ### Rails App
 http://app.local.test
+### Sidekiq Queue
+http://app.local.test/sidekiq/queue
 ### Elastic search instance
 http://elastic.local.test
 ___

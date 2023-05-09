@@ -14,6 +14,11 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 
 ### As of this moment we do have...
 
+#### 2023-05-08
+- Some minor adjustments on queueing
+
+I decided to keep this repo and add more things to It to use it for teaching the use of ES in the future.
+
 #### 2023-05-07
 - Added Foreman
 - Enabled Redis and SideKick

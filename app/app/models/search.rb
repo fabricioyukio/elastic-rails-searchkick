@@ -8,7 +8,7 @@
 #  updated_at    :datetime         not null
 #
 class Search < ApplicationRecord
-  searchkick callbacks: :async
+  searchkick callbacks: :queue
 
   after_commit :reindex_async, if: -> (model) { model.previous_changes.key?("content") }
 

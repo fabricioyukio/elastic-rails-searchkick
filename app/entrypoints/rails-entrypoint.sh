@@ -14,5 +14,5 @@ bundle exec rails assets:precompile
 
 # bundle exec rails s -p 3000
 # exec bundle exec "$@"
-bundle exec rails server -b 0.0.0.0
-# bundle exec foreman start -f Procfile
+# bundle exec rails server -b 0.0.0.0
+bundle exec foreman start -f Procfile

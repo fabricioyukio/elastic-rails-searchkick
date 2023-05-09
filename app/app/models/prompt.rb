@@ -12,7 +12,7 @@ class Prompt < ApplicationRecord
   searchkick callbacks: :queue
 
   # after_save :reindex_async
-  after_initialize :reindex_async
+  # after_initialize :reindex_async
   after_commit :reindex_async
   # after_commit :reindex_async, if: -> (model) { model.previous_changes.key?("content") }
 
@@ -30,8 +30,9 @@ class Prompt < ApplicationRecord
   end
 
   def reindex_async
-    puts "\n\n\nQueueing Reindexing Prompt #{self.original_index}...\n\n\n"
+    puts "\n\n\nQueueing Reindexing Prompt #{self.id}...\n"
     PromptIndexerWorker.perform_async(self.id)
+    puts "\n\n\nQueued Prompt #{self.id}...\n\n\n"
   end
 
   # def search_data

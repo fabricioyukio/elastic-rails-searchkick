@@ -13,8 +13,8 @@ class SearchController < ApplicationController
                             page: page,
                             per_page: size)
 
-    # MultiplePromptIndexerWorker.perform_async(search)
-    Prompt.reindex
+    MultiplePromptIndexerWorker.perform_async(search)
+    # Prompt.reindex
     render turbo_stream: turbo_stream.update('prompts',
             partial: 'prompts/partials/list',
             locals: { prompts: @prompts })

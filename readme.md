@@ -14,6 +14,10 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 
 ### As of this moment we do have...
 
+#### 2023-05-10
+- Some minor adjustments on *readme.md* file.
+
+
 #### 2023-05-08
 - Some minor adjustments on queueing
 
@@ -68,9 +72,9 @@ Most of the times you do not need to pull each image for the project, I did not 
 docker pull docker.elastic.co/elasticsearch/elasticsearch:8.7.0
 ```
 
-#### Get Kibana Image
+<!-- #### Get Kibana Image
 ```bash
-docker pull docker.elastic.co/kibana/kibana:8.7.0
+docker pull docker.elastic.co/kibana/kibana:8.7.0 -->
 ```
 
 When you've got the above tools and requirements, you just may begin...
@@ -186,6 +190,17 @@ ___
 </br>
 
 ## Tips + Utilities
+
+### Generate a new *master.key* for the Rails App
+
+Delete config/master.key and *config/credentials.yml.enc*. Then run the command below and it will make a new key and encrypted credentials file.
+
+```bash
+docker exec $APP bash -c
+# $APP is the docker container for rails APP (app, by this project default)
+# once the container's terminal is up, just do
+rails credentials:edit
+```
 
 ### Generate a secure random rash
 

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search'
 
-  get 'about', to: 'pages#about'
+  get 'about', to: 'page#about'
 
   resources :prompts, :only => [:show, :new, :create, :edit, :update, :destroy]
 end

@@ -30,15 +30,7 @@ class Prompt < ApplicationRecord
   end
 
   def reindex_async
-    puts "\n\n\nQueueing Reindexing Prompt #{self.id}...\n"
     PromptIndexerWorker.perform_async(self.id)
-    puts "\n\n\nQueued Prompt #{self.id}...\n\n\n"
   end
-
-  # def search_data
-  #   {
-  #     content: content
-  #   }
-  # end
 
 end

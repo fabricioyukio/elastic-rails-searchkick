@@ -2,7 +2,10 @@
   <% prompts.each do |prompt| %>
     <div class="prompt" id="prompt-<%=prompt.id%>">
       <h4>Prompted at <%=prompt.created_at.strftime("%H-%m-%d@%H:%M:%S")%></h4>
-      <h5>Orignal id: <%=prompt.original_index%></h5>
+      <h5>Orignal id:
+        <strong><%= link_to prompt.original_index, prompt_path(prompt),
+              class:"link" %></strong>
+      </h5>
       <p><%=prompt.content%></p>
     </div>
   <% end %>

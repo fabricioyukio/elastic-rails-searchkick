@@ -5,9 +5,12 @@ class PromptIndexerWorker
   sidekiq_options queue: :searchkick, retry: 5, backtrace: true
 
   def perform(prompt_id)
-    puts "\n\nReindexing Prompt #{prompt_id}...\n\n"
-    prompt = Prompt.find(prompt_id)
-    prompt.reindex unless prompt.nil?
-    puts "\n\nReindexed Prompt #{prompt.id}...\n\n\n\n"
+    begin
+      prompt = Prompt.find(prompt_id)
+      prompt.reindex
+    rescue ActiveRecord::RecordNotFound => e
+      # while scheduled for deletion, the record might have been deleted
+      logger.error "PromptIndexerWorker: #{e.message}"
+    end
   end
 end

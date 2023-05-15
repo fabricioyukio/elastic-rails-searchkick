@@ -6,7 +6,7 @@ RUN apt-get install -y nodejs postgresql-client yarn yarnpkg npm redis
 WORKDIR /usr/src/app
 COPY Gemfile /usr/src/app/Gemfile
 COPY Gemfile.lock /usr/src/app/Gemfile.lock
-RUN gem update --system 3.4.12
+RUN gem update --system 3.4.13
 # RUN bundle exec css:install:bootstrap
 # RUN bundle exec javascript:install:esbuild
 

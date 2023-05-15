@@ -72,10 +72,12 @@ Most of the times you do not need to pull each image for the project, I did not 
 docker pull docker.elastic.co/elasticsearch/elasticsearch:8.7.0
 ```
 
-<!-- #### Get Kibana Image
+<!--
+#### Get Kibana Image
 ```bash
-docker pull docker.elastic.co/kibana/kibana:8.7.0 -->
+docker pull docker.elastic.co/kibana/kibana:8.7.0
 ```
+-->
 
 When you've got the above tools and requirements, you just may begin...
 
@@ -188,6 +190,15 @@ http://app.local.test/sidekiq/queue
 http://elastic.local.test
 ___
 </br>
+
+
+## Testing
+
+Initialize tests
+```bash
+rails generate rspec:install
+rails db:migrate db:test:prepare
+```
 
 ## Tips + Utilities
 

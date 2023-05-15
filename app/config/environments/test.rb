@@ -54,7 +54,11 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
-
+  config.hosts << "app.local.test"
+  if ENV['DOCKERIZED'] == 'true'
+    config.web_console.whitelisted_ips = ENV['DOCKER_HOST_IP']
+  end
+  config.web_console.permissions = '192.168.0.0/16'
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 end

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'sidekiq/api'
 
+# performs background reindexing for Prompt
 class PromptIndexerWorker
   include Sidekiq::Worker
   sidekiq_options queue: :searchkick, retry: 5, backtrace: true

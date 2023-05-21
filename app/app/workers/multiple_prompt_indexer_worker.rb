@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 require 'sidekiq/api'
 
+# batch indexing of prompts
 class MultiplePromptIndexerWorker
   include Sidekiq::Worker
   sidekiq_options queue: :searchkick, retry: 5, backtrace: true
 
-  def perform(search, promote_and_clean = true)
+  def perform(search, promote_and_clean: true)
     puts "\n\n\nReindexing MULTIPLE  Prompts..."
-    prompts = Prompt.search(search)
-    index = (Prompt.reindex(mode: :async))[:index_name]
+    index = Prompt.reindex(mode: :async)[:index_name]
     puts "\nREINDEXED for search: #{search}\n\n"
     promote_and_clean('Prompt', index) if promote_and_clean
-
   end
 
   def promote_and_clean(model_name, index_name)

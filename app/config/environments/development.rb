@@ -68,9 +68,9 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "app.local.test"
+
   if ENV['DOCKERIZED'] == 'true'
     config.web_console.whitelisted_ips = ENV['DOCKER_HOST_IP']
-
   end
   config.web_console.permissions = '192.168.0.0/16'
   # config.sass.inline_source_maps = true

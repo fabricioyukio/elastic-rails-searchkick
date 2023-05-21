@@ -14,6 +14,12 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 
 ### As of this moment we do have...
 
+#### 2023-05-21
+- Made the Specs for requests to work in both NGRok and Docker.
+- Added some relevant Test Specs for Workers
+- Added a dismiss for alerts in layout.
+- Some minor adjustments on *readme.md* file.
+
 #### 2023-05-10
 - Some minor adjustments on *readme.md* file.
 

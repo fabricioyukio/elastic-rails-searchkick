@@ -11,11 +11,6 @@
 class Prompt < ApplicationRecord
   searchkick callbacks: :queue
 
-  # after_save :reindex_async
-  # after_initialize :reindex_async
-  after_commit :reindex_async
-  # after_commit :reindex_async, if: -> (model) { model.previous_changes.key?("content") }
-
   validates :original_index, presence: true, numericality: { only_integer: true }
   validates :content, presence: true, length: { minimum: 3, maximum: 512 }
 

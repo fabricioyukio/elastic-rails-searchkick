@@ -14,6 +14,10 @@ On future, I think I could get into some tagging, or most "valuable" words (crea
 
 ### As of this moment we do have...
 
+#### 2023-05-24
+- Updated documentation
+- Gave more clarification, as someone pointed that there should be done a compulsory reindex via Rails Console.(You might need if you loaded the DB data through any other way, that is not specified here, and there are lots of ways to do so.)
+
 #### 2023-05-21
 - Made the Specs for requests to work in both NGRok and Docker.
 - Added some relevant Test Specs for Workers
@@ -47,13 +51,14 @@ I decided to keep this repo and add more things to It to use it for teaching the
 
 ### 0 - Before you begin...
 For smoothly running this project you must edit your _hosts_ file adding the following lines...
-```C
+```bash
 127.0.0.1 app.local.test //Rails App
 127.0.0.1 elasticsearch.local.test
 127.0.0.1 queue.local.test
 // 127.0.0.1 kibana.local.test //Kibana to be added soon
 //Elasticsearch, also running at http://elastic:9200
 ```
+
 As every _OS_ has its own specific locations for such file, it's up to you to find out where that file locates in your machine.
 
 Anyway if you want to set other URL's just adjust accordingly into *./nginx/conf/reverse-proxy.conf* file
@@ -161,6 +166,8 @@ rails db:migrate:reset
 
 ### 7 - Add the Seeding data for training
 
+The initial premise was that we should use some Stable Diffusion prompts curated by Gustavo.
+So in order to do that we must acquire those prompts.
 Get the PARQUET files from: https://huggingface.co/datasets/Gustavosta/Stable-Diffusion-Prompts/blob/main/README.md
 
 - Download one of the files (train.parquet or eval.parquet).
@@ -182,6 +189,27 @@ python parquet-to-csv.py eval prompts
 ```
 
 Have in mind that once the files are used they will be **deleted**. So if one must *seed* it again, one will have to put a new *parquet* file in the same directory.
+
+If you did the above procedure, you must run the db seeding again:
+```bash
+rails db:migrate:reset
+```
+
+#### Reindex ES before the first run
+... or if loaded somehow a bunch of new data that must be indexed by ES.
+If you seed the DB using CSV (that might have been converted from a parquet file, as above), **you don't need to reindex data** it was already done in the seeding.
+But if you just skiped all and did seeding someother way, then you perform the reindexing.
+Do the following:
+```bash
+# access terminal on rails machine
+docker compose exec app sh
+# enter Rails Console
+rails c
+# and then reindex
+Prompt.reindex
+# then exit
+exit!
+```
 
 ___
 </br>

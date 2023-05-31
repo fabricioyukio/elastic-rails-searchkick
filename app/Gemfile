@@ -92,4 +92,4 @@ gem 'foreman', '~> 0.87.2'
 
 gem 'rails-controller-testing', '~> 1.0'
 
-gem "rubocop", "~> 1.51"
+gem 'rubocop', '~> 1.51'

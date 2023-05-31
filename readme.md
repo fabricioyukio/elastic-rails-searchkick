@@ -2,7 +2,9 @@
 
 This project seeks to be a proof of concept and, maybe, a boilerplate for a Rails+Elasticsearch App Stack.
 
-It started as a *coding challenge* from CGTrader for the position of Rails Developer. As I'd never used Sidekiq with Elastic Search prior to this challenge, it seemed a very interesting lab, be it for comparison against Python or Javascript similar implementations, or just for the fun of learning.
+It started as a *coding challenge* from CGTrader for the position of Rails Developer. It seemed a very interesting proposition, be it for comparison against Python or Javascript similar implementations, or just for the fun of learning and doing.
+
+Then I repurposed this project as a proof of concept for a lecture about Rails and queueing.
 
 The idea is that it will learn better responses for searches into some *prompts* used to train a *Stable-Diffusion* App. The *raw data* may be acquired in the following URI: https://huggingface.co/datasets/Gustavosta/Stable-Diffusion-Prompts/blob/main/README.md
 
@@ -21,6 +23,7 @@ Prior to this project, I'd always used Elastic Search with Python or Javascript/
 - Revamp Prompts data to have more complex indexing so we could do more things with ES.
 - Add Kibana to the Stack so we could observe better what's going on.
 - Also store search, for some cross operations.
+- Use other test data for a more complex and interesting engineering.
 
 ### What is new
 
@@ -318,3 +321,37 @@ it will open IRB, 16 character is enough for local development. Anyways, you sho
 ```irb
 irb> SecureRandom.urlsafe_base64(16)
 ```
+
+
+<!--
+
+TODO
+
+
+Pros
+* App works and does what it is supposed to do.
+* Dockerized not only the database and ES part, but also the app itself. And dockerized very well.
+* Latest ruby and gem versions.
+* Lovely, well-detailed readme.
+* Clean git commits, nice history.
+* Nice front-end code.
+
+Cons
+* Could use a few specs.
+* The Prompt model calls reindexing twice in a row - in after_save and in after_commit. I don't think it's necessary to duplicate them.
+* Additionally, by default anytime a record is inserted, updated, or deleted, reindexing happens anyway. So the callbacks are wholly unnecessary (https://github.com/ankane/searchkick#strategies).
+* I might be misunderstanding something, but before_validation :original_index isn't doing anything useful? Why is it there?
+
+Nitpicks
+* The readme is missing the step where [Prompt.reindex] needs to be run. I needed to open rails console and execute it there.
+* Did not use rubocop or other tools for cody styling.
+# default_scope is quite dangerous and one would need to think twice before using it. But in such a small test app it is fine. Although, ordering by ID might make more sense to take advantage of the DB index.
+* about and contact actions in PageController do nothing.
+* A lot of unused actions in PromptsController.
+* about in routes.rb does nothing.
+* A lot of unused code and files in general.
+
+
+
+
+-->
